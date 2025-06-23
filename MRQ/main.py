@@ -12,6 +12,8 @@ import pickle
 import time
 
 import env_preprocessing
+import gymnasium
+import highway_env
 import numpy as np
 import torch
 import utils
@@ -342,4 +344,5 @@ def load_experiment(
 
 
 if __name__ == "__main__":
+    gymnasium.register_envs(highway_env)
     main()
