@@ -30,13 +30,13 @@ class ReplayBuffer:
         self.device = device
 
         # Store obs on GPU if they are sufficient small.
-        memory, _ = torch.cuda.mem_get_info()
-        obs_space = np.prod((self.max_size, *self.obs_shape)) * 1 if pixel_obs else 4
-        ard_space = self.max_size * (action_dim + 2) * 4
-        if obs_space + ard_space < memory:
-            self.storage_device = self.device
-        else:
-            self.storage_device = torch.device('cpu')
+        self.storage_device = torch.device('cpu')
+        if self.device == torch.device('cuda'):
+            memory, _ = torch.cuda.mem_get_info()
+            obs_space = np.prod((self.max_size, *self.obs_shape)) * 1 if pixel_obs else 4
+            ard_space = self.max_size * (action_dim + 2) * 4
+            if obs_space + ard_space < memory:
+                self.storage_device = self.device
 
         self.action_dim = action_dim
         self.action_scale = max_action if normalize_actions else 1.
