@@ -5,14 +5,13 @@
 # LICENSE file in the root directory of this source tree.
 
 
-from collections import deque
 import dataclasses
+from collections import deque
 from functools import partial
 from typing import Dict
 
 import gymnasium as gym
 import numpy as np
-
 import utils
 
 # Used by Atari

@@ -11,12 +11,12 @@ import os
 import pickle
 import time
 
+import env_preprocessing
 import numpy as np
 import torch
-
-import env_preprocessing
-import MRQ
 import utils
+
+import MRQ
 
 
 @dataclasses.dataclass
