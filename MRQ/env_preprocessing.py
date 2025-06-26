@@ -106,6 +106,26 @@ class GymPreprocessing:
         return self.env.reset()
 
 
+class HighWayPreprocessing:
+    def __init__(self, env_name: str, seed: int = 0, eval_env: bool = False):
+        env = gym.make(env_name.replace("HighWay-", ""))
+        self.env = gym.wrappers.FlattenObservation(env)
+        self.env.reset(seed=seed)
+
+        self.offline = False
+        self.pixel_obs = False
+        self.obs_shape = self.env.observation_space.shape
+        self.history = 1
+        self.max_ep_timesteps = self.env.spec.max_episode_steps
+        self.action_space = self.env.action_space
+
+    def step(self, action: int | float):
+        return self.env.step(action)
+
+    def reset(self):
+        return self.env.reset()
+
+
 @dataclasses.dataclass
 class DmcHyperparameters:
     action_repeat: int = 2
