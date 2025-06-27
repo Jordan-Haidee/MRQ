@@ -280,10 +280,11 @@ def save_experiment(exp: OnlineExperiment):
     np.savetxt(f"{exp.save_folder}/{exp.project_name}.txt", exp.evals, fmt="%.14f")
     # Save envs
     pickle.dump(
-        exp.env, file=open(f"{exp.save_folder}/{exp.project_name}/env.pickle", "wb")
+        exp.env.env.env.unwrapped,
+        file=open(f"{exp.save_folder}/{exp.project_name}/env.pickle", "wb"),
     )
     pickle.dump(
-        exp.eval_env,
+        exp.eval_env.env.env.unwrapped,
         file=open(f"{exp.save_folder}/{exp.project_name}/eval_env.pickle", "wb"),
     )
     # Save agent

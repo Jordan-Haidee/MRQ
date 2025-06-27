@@ -2,3 +2,7 @@
 .vscode
 *.txt
 *.lock
+MRQ/checkpoint
+MRQ/evals
+MRQ/logs
+tmp*
